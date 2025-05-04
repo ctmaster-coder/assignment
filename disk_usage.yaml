@@ -1,9 +1,9 @@
----
-- name: Check Disk Space Usage
+- name: Check disk space on Linux machines
   hosts: localhost
+  gather_facts: no
+
   tasks:
-          - name: Disk usage from command module
-            ansible.builtin.command: df -h
-            register: space
-          - ansible.builtin.debug:
-                  var: space.stdout_lines
+    - name: Display disk space
+      shell: df -h
+      register: disk_space
+    - debug: var=disk_space.stdout_lines
