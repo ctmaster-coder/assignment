@@ -1,9 +1,9 @@
 - name: Check disk space on Linux machines
-  hosts: localhost
-  gather_facts: no
+  hosts: linux_servers
+  gather_facts: yes
 
   tasks:
     - name: Display disk space
-      shell: "df -h"
+      shell: df -h
       register: disk_space
     - debug: var=disk_space.stdout_lines
