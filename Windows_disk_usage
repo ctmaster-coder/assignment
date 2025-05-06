@@ -1,0 +1,9 @@
+- name: Check disk space on Windows machines
+  hosts: windows_servers
+  gather_facts: yes
+
+  tasks:
+    - name: Display disk space
+      win_shell: Get-PSDrive | Select-Object Name, Used, Free, @{Name="Capacity";Expression={"{0:N2}" -f ($_.Used + $_.Free)/1GB}} | Format-Table -AutoSize
+      register: disk_space
+    - debug: var=disk_space.stdout_lines
