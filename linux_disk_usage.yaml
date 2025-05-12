@@ -1,5 +1,5 @@
 - name: Check disk space on Linux machines
-  hosts: linux_servers
+  hosts: localhosts
   gather_facts: yes
 
   tasks:
